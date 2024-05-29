@@ -9,7 +9,7 @@ This repository contains solutions to various competitive programming problems f
 2) [Neetcode](https://neetcode.io/)
 3) [TakeUForward](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2)
 4) [Codechef](https://codechef.com/)
-5) [Geeksforgeeks](https://geeksforgeeks.com/)
+5) [Geeksforgeeks](https://www.geeksforgeeks.org/)
 6) [Codingninjas](https://www.naukri.com/code360/home)
 7) [Prepbytes](https://www.prepbytes.com/)
 8) [Interviewbit](https://www.hackerearth.com/)
