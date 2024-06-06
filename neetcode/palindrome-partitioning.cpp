@@ -11,19 +11,17 @@ public:
         return true;
     }
 
-    void partition(vector<vector<string>>& answer,string& s,vector<string>& pattern,int start,int length){
+    void partition(vector<vector<bool>>& pallindromicity,vector<vector<string>>& answer,string& s,vector<string>& pattern,int start,int length){
         if(start == length){
             answer.push_back(pattern);
             return;
         }
         for(int i=start;i<length;i++){
-            if(check_pallindrome(s,start,i)){
-                string word = s.substr(start,i-start+1);
-                pattern.push_back(word);
-                partition(answer,s,pattern,i+1,length);
+            if(pallindromicity[start][i]){
+                pattern.push_back(s.substr(start,i-start+1));
+                partition(pallindromicity,answer,s,pattern,i+1,length);
                 pattern.pop_back();
             }
-
         }
     }
 
@@ -31,7 +29,15 @@ public:
         vector<vector<string>> answer;
         int length = s.size();
         vector<string> pattern;
-        partition(answer,s,pattern,0,length);
+        vector<vector<bool>> pallindromicity(length,vector<bool>(length,false));
+        for(int i=0;i<length;i++){
+            for(int j=0;j<length;j++){
+                if(check_pallindrome(s,i,j)){
+                    pallindromicity[i][j] = true;
+                }
+            }
+        }
+        partition(pallindromicity,answer,s,pattern,0,length);
         return answer;
     }
 };
