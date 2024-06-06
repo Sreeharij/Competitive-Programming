@@ -31,3 +31,20 @@ class Solution:
         print()
 
         return max_product
+    
+#Using Kadanes algorithm
+class Solution:
+    def maxProduct(self, nums):
+        length = len(nums)
+        product = 1
+        answer = -11
+        for i in range(length):
+            product = 1 if nums[i]==0 else nums[i]*product
+            answer = max(answer,0) if nums[i]==0 else max(answer,product)
+        product = 1
+        for i in range(length-1,-1,-1):
+            product = 1 if nums[i]==0 else nums[i]*product
+            answer = max(answer,0) if nums[i]==0 else max(answer,product)
+
+        return answer
+
