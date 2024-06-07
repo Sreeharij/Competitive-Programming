@@ -18,3 +18,32 @@ public:
         return answer;
     }
 };
+
+
+//O(n) space optimised sol 
+class Solution {
+public:
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int length = matrix.size();
+        int a,b,c;
+
+        vector<int> dp(length,INT_MAX);
+        vector<int> prev(length,INT_MAX);
+        for(int i=0;i<length;i++)prev[i] = matrix[0][i];
+        
+        for(int i=1;i<length;i++){
+            for(int j=0;j<length;j++){
+                a = j-1 >= 0 ? matrix[i][j] + prev[j-1] : INT_MAX;
+                b = matrix[i][j] + prev[j];
+                c = j+1 < length ? matrix[i][j] + prev[j+1] : INT_MAX;
+                dp[j] = min(a,min(b,c));
+            }
+            prev = dp;
+        }
+        int answer = INT_MAX;
+        for(int i=0;i<length;i++){
+            answer = min(answer,prev[i]);
+        }
+        return answer;
+    }
+};
