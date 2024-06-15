@@ -22,3 +22,23 @@ public:
         return jumps;
     }
 };
+
+
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int length = nums.size();
+        int jumps = 0;
+        int current_level_end_idx = 0;
+        int next_level_farthest=0;
+        for(int i=0;i<length-1;i++){
+            next_level_farthest = max(next_level_farthest,nums[i] + i);
+            if(i == current_level_end_idx){
+                jumps++;
+                current_level_end_idx = next_level_farthest;
+                if(current_level_end_idx >= length-1)return jumps;
+            }
+        }
+        return jumps;
+    }
+};
