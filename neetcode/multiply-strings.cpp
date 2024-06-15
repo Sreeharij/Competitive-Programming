@@ -29,3 +29,29 @@ public:
         return answer.substr(leading,first+second-leading);
     }
 };
+
+//OPTIMUM SOLUTION AS SEEN ONLINE GIVEN BELOW
+class Solution {
+public:
+    string multiply(string num1, string num2) {
+        int first = num1.size();
+        int second = num2.size();
+
+        string answer(first+second,'0');   
+        int val;        
+
+        for(int j=second-1;j>=0;j--){
+            for(int i=first-1;i>=0;i--){
+                val = (num1[i] - '0') * (num2[j] - '0') + (answer[i+j+1] - '0');
+                answer[i+j+1] = val%10 +'0';
+                answer[i+j] += val/10; //NOTICE THE += THE COMPUTATION IS CLEVERLY STORED HERE FOR LATER USE
+            }
+        } 
+        for(int i=0;i<first+second;i++){
+            if(answer[i] != '0'){
+                return answer.substr(i);
+            }
+        }
+        return "0";
+    }
+};
