@@ -7,26 +7,20 @@ public:
         int second = num2.size();
 
         string answer(first+second,'0');   
-
-        int idx_start = first+second-1;
-        int idx;
         int val;
         int digit;
         int carry;
-
-        for(int j=second-1;j>=0;j--){
-            idx = idx_start;
-            idx_start--;
-
+        int i,j;
+        
+        for(j=second-1;j>=0;j--){
             carry = 0;
-            for(int i=first-1;i>=0;i--){
-                val = (num1[i] - '0') * (num2[j] - '0') + (answer[idx] - '0') +carry;
+            for(i=first-1;i>=0;i--){
+                val = (num1[i] - '0') * (num2[j] - '0') + (answer[i+j+1] - '0') +carry;
                 digit = val%10;
                 carry = val/10;
-                answer[idx--] = digit+'0';
+                answer[i+j+1] = digit+'0';
             }
-            answer[idx] = carry+'0';
-
+            answer[i+j+1] = carry+'0'; // +1 is still there for index since i become -1 at the end 
         } 
         int leading = 0;
         while(answer[leading] == '0'){
