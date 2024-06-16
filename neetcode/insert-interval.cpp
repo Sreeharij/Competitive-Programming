@@ -33,3 +33,29 @@ public:
     }
 };
 
+
+class Solution {
+public:
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+        vector<vector<int>> answer;
+        int length = intervals.size();
+        for(int i=0;i<length;i++){
+            if(intervals[i][1] < newInterval[0]){
+                answer.emplace_back(intervals[i]);
+            }
+            else if(newInterval[1] < intervals[i][0]){
+                answer.emplace_back(newInterval);
+                for(int j=i;j<length;j++){
+                    answer.emplace_back(intervals[j]);
+                }
+                return answer;
+            }
+            else {
+                newInterval[0] = min(newInterval[0], intervals[i][0]);
+                newInterval[1] = max(newInterval[1], intervals[i][1]);
+            }
+        }
+        answer.emplace_back(newInterval);
+        return answer;
+    }
+};
