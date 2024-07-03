@@ -26,34 +26,21 @@ public:
     }
 };
 
-/* THE BELOW IMPLEMENTATION IS ALSO CORRECT
+//ITERATIVE SOLUTION GIVEN BELOW
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> answer_arr;
-        vector<int> empty_vector;
-        answer_arr.push_back(empty_vector);
-        for(int i=1;i<=nums.size();i++){
-            vector<int> individual_subset(i,0);
-            get_subset(nums,answer_arr,individual_subset,i,0,0);
-        }
-        return answer_arr;
-    }
-
-    void get_subset(vector<int>& nums,vector<vector<int>>& answer_arr,vector<int>& individual_subset,int n,int current_level,int loop_start){
-        if(n==1){
-            for(int i=loop_start;i<nums.size();i++){
-                individual_subset[current_level] = nums[i];
-                answer_arr.push_back(individual_subset);
+        vector<vector<int>> answer;
+        answer.push_back({});
+        
+        for(auto number: nums){
+            int current_length = answer.size();
+            for(int i=0;i<current_length;i++){
+                vector<int> temp = answer[i];
+                temp.push_back(number);
+                answer.push_back(temp);
             }
         }
-        else{
-            for(int i=loop_start;i<nums.size()-n+1;i++){
-                individual_subset[current_level] = nums[i];
-                get_subset(nums,answer_arr,individual_subset,n-1,current_level+1,i+1);
-            }
-        }
+        return answer;
     }
 };
-
-*/
