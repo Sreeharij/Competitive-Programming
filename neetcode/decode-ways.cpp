@@ -21,3 +21,28 @@ public:
         return dp[0];
     }
 };
+
+
+//O(n) time and O(1) space
+class Solution {
+public:
+    int numDecodings(string s) {
+        int length = s.size();
+        if(s[0] == '0')return 0;
+
+        int first = 1;
+        int second = 1;
+        int current;
+        for(int i=2;i<=length;i++){
+            current = 0;
+    
+            if(stoi(s.substr(i-1,1)) <= 9 && stoi(s.substr(i-1,1)) > 0)current += second;
+            if(stoi(s.substr(i-2,2)) >= 10 && stoi(s.substr(i-2,2)) <= 26)current += first;
+            first = second;
+            second = current;
+        }
+        
+
+        return second;
+    }
+};
