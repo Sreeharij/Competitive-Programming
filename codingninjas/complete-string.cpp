@@ -4,6 +4,7 @@ struct Node{
     bool is_word = false;
 };
 
+
 void insert(string& word,Node* root){
     Node* ptr = root;
     int length = 0;
