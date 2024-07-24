@@ -1,7 +1,7 @@
 def main(arr,required_sum,n):
     for i in range(1,2**n):
         current_sum = 0
-        num = bin(i)
+        num =  bin(i)
         for j in range(-1,-21,-1):
             if num[j]=='b':
                 break
