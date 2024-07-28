@@ -38,3 +38,25 @@ public:
         return answer;
     }
 };
+
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        vector<int> answer;
+        vector<int> last_occurance(26,-1);
+        int length = s.size();
+        for(int i=0;i<length;i++){
+            last_occurance[s[i]-'a'] = i;
+        }
+        int end = -1;
+        int start = 0;
+        for(int i=0;i<length;i++){
+            end = max(end,last_occurance[s[i]-'a']);
+            if(i == end){
+                answer.push_back(end - start + 1);
+                start = end + 1;
+            }
+        }
+        return answer;
+    }
+};
