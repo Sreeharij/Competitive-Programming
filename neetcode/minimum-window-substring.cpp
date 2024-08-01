@@ -3,14 +3,11 @@ public:
     string minWindow(string s, string t) {
         int left = 0;
         int smallest_size = INT_MAX;
-        string answer;
+        int left_start = 0;
+        int remaining_required_count = t.size();
         
         unordered_map<char,int> mp;
-        int remaining_required_count = 0;
-
-        int left_start = 0;
         for(auto x: t){
-            remaining_required_count++;
             mp[x]++;
         }
 
@@ -20,22 +17,17 @@ public:
                 if(mp[right_char] > 0)remaining_required_count--;
                 mp[right_char]--;
 
-                bool all_covered = remaining_required_count == 0;
-
-                while(all_covered && left <= right){
-                    if(mp.find(s[left]) == mp.end()){
-                        left++;
-                        continue;
+                while(remaining_required_count == 0 && left <= right){
+                    if(mp.count(s[left])){
+                        if(right - left + 1 < smallest_size){
+                            smallest_size = right - left + 1;
+                            left_start = left;
+                        }
+                        
+                        mp[s[left]]++;
+                        if(mp[s[left]] > 0)remaining_required_count++;
                     }
-                    if(right - left + 1 < smallest_size){
-                        smallest_size = right - left + 1;
-                        left_start = left;
-                    }
-                    mp[s[left]]++;
-                    if(mp[s[left]] > 0)remaining_required_count++;
                     left++;
-
-                    all_covered = remaining_required_count == 0;
                 }
             }
         }
