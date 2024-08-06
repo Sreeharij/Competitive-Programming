@@ -12,6 +12,7 @@
 
 //MORRIS TRAVERSAL APPROACH WITH O(n) time and O(1) space
 class Solution {
+
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> answer;
